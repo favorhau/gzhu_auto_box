@@ -2,7 +2,7 @@ import { instance } from './instance'
 import qs from 'qs'
 
 
-const checkProject = async (stepid: string, csrfToken: string, week: string, date: string, place: string) => {
+const checkProject = async (cookie: string, stepid: string, csrfToken: string, week: string, date: string, place: string) => {
     const data = qs.stringify({
         'formData': JSON.stringify({
             "groupCDXXList": [],
@@ -28,7 +28,7 @@ const checkProject = async (stepid: string, csrfToken: string, week: string, dat
         'workflowId': 'null',
     })
 
-    const res = await instance().post('https://usc.gzhu.edu.cn/infoplus/interface/fieldChanging',data)
+    const res = await instance(cookie).post('https://usc.gzhu.edu.cn/infoplus/interface/fieldChanging',data)
 
     const projects = JSON.parse(res.data.entities[0]).cDXXList ;
     
