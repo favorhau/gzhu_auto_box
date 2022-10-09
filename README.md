@@ -1,34 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+  <img src="https://s1.ax1x.com/2022/10/09/xYVEz8.png"></img>
+  <h1>GZHU 明日羽毛球</h1>
+</div>
 
-## Getting Started
 
-First, run the development server:
+# Motivation
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+> 每当学校出了一个可以用作`定时任务`的操作时，总会有许多诸如`快速抢*`的需求，抢羽毛球也是如此。之所以要抢打羽毛球，是因为热爱羽毛球。而如果0点的时候通过机器去快速抢场地是不太道德的，不同于`每日打卡`，机器抢球十分利益相关。因此[GZHU 明日羽毛球](https://github.com/favorhau/gzhu_tomorrow_badminton)诞生，不采用0点抢占的方式，而提供`一键抢场地`功能用于给一些热爱打羽毛球的同学快速抢场地。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Functions
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- [x] 0点一键速抢场地
+- [x] 「天眼」快速查看场地
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+# License
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Copyright 2022 gzhu_tomorrow_badminton
 
-## Learn More
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-To learn more about Next.js, take a look at the following resources:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
