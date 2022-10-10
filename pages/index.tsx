@@ -72,8 +72,7 @@ const Home: NextPage = () => {
           return
       }else
       {
-        const stepid = (new RegExp('(?<=form/).+(?=/render)').exec(_url.data.url)??[''])[0]
-        console.log(stepid)
+        const stepid = (new RegExp('m/(.+)/rend').exec(_url.data.url)??[''])[1]
         setStepId(stepid)
         console.log('获取stepid成功:', stepid[0])
       }
