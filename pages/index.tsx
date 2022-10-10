@@ -63,7 +63,7 @@ const Home: NextPage = () => {
         csrf: _csrf.data.csrf
       })
       setUrl(_url.data.url)
-      console.log(_url.data.url)
+      
       if(_url.data.url.indexOf('task=all') !== -1)
       {
           setTips(`已经有进行的申请 需等待系统注销: ${_url.data.url}`)
@@ -72,9 +72,10 @@ const Home: NextPage = () => {
           return
       }else
       {
-        const stepid = new RegExp('(?<=form/).+(?=/render)').exec(_url.data.url)??['']
-        setStepId(stepid[0])
-        console.log('获取stepid成功:', stepid[0])
+        // const stepid = new RegExp('(?<=form/).+(?=/render)').exec(_url.data.url)??['']
+        // setStepId(stepid[0])
+        console.log(_url.data.url)
+        // console.log('获取stepid成功:', stepid[0])
       }
       const _userInfo = await axios.post(api.userInfo, {
         cookie,
