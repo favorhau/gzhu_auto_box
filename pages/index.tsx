@@ -72,10 +72,10 @@ const Home: NextPage = () => {
           return
       }else
       {
-        // const stepid = new RegExp('(?<=form/).+(?=/render)').exec(_url.data.url)??['']
-        // setStepId(stepid[0])
-        console.log(_url.data.url)
-        // console.log('获取stepid成功:', stepid[0])
+        const stepid = (new RegExp('(?<=form/).+(?=/render)').exec(_url.data.url)??[''])[0]
+        console.log(stepid)
+        setStepId(stepid)
+        console.log('获取stepid成功:', stepid[0])
       }
       const _userInfo = await axios.post(api.userInfo, {
         cookie,
