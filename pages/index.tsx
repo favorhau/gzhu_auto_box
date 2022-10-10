@@ -63,7 +63,7 @@ const Home: NextPage = () => {
         csrf: _csrf.data.csrf
       })
       setUrl(_url.data.url)
-      
+      console.log(_url.data.url)
       if(_url.data.url.indexOf('task=all') !== -1)
       {
           setTips(`已经有进行的申请 需等待系统注销: ${_url.data.url}`)
