@@ -1,11 +1,17 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
 import { Typography, TextField, Box, Breadcrumbs, Link } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import StringAvatar from './component/StringAvatar';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import CustomizedSnackbars from './component/Alert'
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 
 const api = {
   csrfToken: '/api/csrfToken',
@@ -20,6 +26,13 @@ const Home: NextPage = () => {
   const [cookie, setCookie] = useState('')
   const [url, setUrl] = useState(undefined)
   const [csrf, setCsrf] = useState(undefined)
+  const [stepId, setStepId] = useState('')
+  const [finishStep, setFinish] = useState(0)
+  const [place, setPlace] = useState('')
+  const [open, setOpenErrorTips] = useState(false)
+  const [tips, setTips] = useState('')
+  
+  
   const [userInfo, setUserInfo] = useState({
     name: undefined,
     id: undefined
@@ -36,6 +49,13 @@ const Home: NextPage = () => {
       const _csrf = await axios.post(api.csrfToken, {
         cookie
       })
+      
+      if(_csrf.data.csrf ==='') {
+        setTips('登录cookie有误 请重试')
+        setOpenErrorTips(true)
+        setLoading(false)
+        return
+      }
       setCsrf(_csrf.data.csrf)
       
       const _url = await axios.post(api.url, {
@@ -60,12 +80,25 @@ const Home: NextPage = () => {
         cookie,
         url: _url.data.url
       })
-      alert(_userInfo.data.name)
       
+      setUserInfo(_userInfo.data)
+      
+      setFinish(1)
+      setStep(1)
 
     }else if(step ===1)
     {
-      return
+      if(!place)
+      {
+        setTips(`请选择场地`)
+        setOpenErrorTips(true)
+        setLoading(false)
+      }else
+      {
+        setLoading(false)
+        setFinish(2)
+        setStep(2)
+      }
     }
     
     setLoading(false)
@@ -77,6 +110,11 @@ const Home: NextPage = () => {
         <meta name="description" content="GZHU Tomorrow Badminton" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div>
+        <StringAvatar name={ userInfo.name ?? ''} sx={{
+          marginTop: 4
+        }}/>
+      </div>
       <div className={styles.main}>
           <Image src={'/badminton.svg'} alt='' width={90} height={90}></Image>
           <Typography sx={{
@@ -113,7 +151,7 @@ const Home: NextPage = () => {
               setStep(2)
             }}
           >
-            预约时间
+            时间
           </Link>
           <Link
              color={ step === 3?'#3f50b5':'inherit' } 
@@ -123,16 +161,52 @@ const Home: NextPage = () => {
               setStep(3)
             }}
           >
-            预约场地
+            场地
+          </Link>
+          <Link
+             color={ step === 4?'#3f50b5':'inherit' } 
+             href='#'
+             underline="hover"
+            onClick={()=>{
+              setStep(4)
+            }}
+          >
+            提交
           </Link>
           </Breadcrumbs>
           </Box>
          
           <Box sx={{ maxWidth: 400 }}>
-              <div>
+
+              <Box sx={{ display: (step === 0?'':'none') }}>
                 <TextField sx={{ width: 300 }} id="outlined-basic" onChange={(e)=>{
-                setCookie(e.target.value)}} label="Cookie" placeholder='Cookie' variant="filled" />
-              </div>
+                setCookie(e.target.value)}} 
+                label="Cookie" 
+                placeholder='Cookie'
+                variant="filled" />
+                
+              </Box>
+              <Box sx={{display: (step === 1?'':'none') }}>
+              <FormControl sx={{mt:1, minWidth: 120 }} size="small">
+                <InputLabel id="demo-select-small">Place</InputLabel>
+                <Select
+                labelId="demo-select-small"
+                id="demo-select-small"
+                value={place}
+                label="场地"
+                sx={{
+                  width: 300 , 
+                }}
+                onChange={(e)=>{
+                  setPlace(e.target.value)
+                }}
+              >
+                <MenuItem value={'风雨跑廊羽毛球场'}>风雨跑廊羽毛球场</MenuItem>
+                <MenuItem value={'体育馆羽毛球场'}>体育馆羽毛球场</MenuItem>
+              </Select>
+              </FormControl>
+                
+              </Box>
               <LoadingButton 
               size="large"
               onClick={handleClick}
@@ -142,6 +216,7 @@ const Home: NextPage = () => {
                 width: 300
               }}
               loading={loading}> 下一步 </LoadingButton>
+              <CustomizedSnackbars tips={tips} open={open}  setOpen={setOpenErrorTips}/>
           </Box>
           
       </div>
