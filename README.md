@@ -6,17 +6,37 @@
 
 # Motivation
 
-> 每当学校出了一个可以用作`定时任务`的操作时，总会有许多诸如`快速抢*`的需求，抢羽毛球也是如此。之所以要抢打羽毛球，是因为热爱羽毛球。而如果0点的时候通过机器去快速抢场地是不太道德的，不同于`每日打卡`，机器抢球十分利益相关。因此[GZHU 明日羽毛球](https://github.com/favorhau/gzhu_tomorrow_badminton)诞生，不采用准点抢占的方式，而提供`一键抢场地`功能用于给一些热爱打羽毛球的同学快速抢场地。
+> 每当学校出了一个可以用作`定时任务`的操作时，总会有许多诸如`快速抢*`的需求，抢羽毛球也是如此。之所以要抢打羽毛球，是因为热爱羽毛球。而如果准点的时候通过机器去快速抢场地是不太道德的，不同于`每日打卡`，机器抢球十分利益相关。因此[GZHU 明日羽毛球](https://github.com/favorhau/gzhu_tomorrow_badminton)诞生，不采用准点抢占的方式，而提供`一键抢场地`功能用于给一些热爱打羽毛球的同学快速抢场地。
 
 
 # Quick Start
 
-# Q&A
+## Dev
 
-> 为什么要使用明日羽毛球
+```bash
+git clone git@github.com:favorhau/gzhu_tomorrow_badminton.git
 
-首先官方系统的开放预约时间是`12:30-次日0:00`
+cd gzhu_tomorrow_badminton
 
+yarn #npm install
+yarn dev #npm run dev
+```
+
+## Production
+
+```bash
+
+```bash
+
+git clone git@github.com:favorhau/gzhu_tomorrow_badminton.git
+
+cd gzhu_tomorrow_badminton
+
+yarn #npm install
+yarn build #npm run build
+yarn start #npm run start
+
+```
 
 # Functions
 
