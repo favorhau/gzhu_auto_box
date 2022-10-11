@@ -95,7 +95,7 @@ export default function CustomizedAccordions() {
             而我们明日羽毛球可以构造好请求的数据，一到能预约的时候，提交按钮就会变成蓝色，一键即可以发起预约。这个过程省去了几个步骤，只需要一个请求，所以这肯定会比其他人快一步的。
             当然如果提示已经被预约，则表示可能远处有某个机器快人一步了。所以如果真的是十分热门的场地，可以电脑一个明日羽毛球，手机一个，有一个备选方案，这样就可以大概率满足个人的需求了。
           </Typography>
-          <Image src={'/help/clockTime.png'} alt={""} width={440} height={100}></Image>
+          <Image src={'/help/clocktime.png'} alt={""} width={440} height={100}></Image>
         </AccordionDetails>
       </Accordion>
       <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
