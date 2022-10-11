@@ -2,10 +2,10 @@ import Avatar from '@mui/material/Avatar'
 import * as React from 'react';
 
 function stringAvatar(name: string) {
-if(!name) return {}
+  if(!name) return {}
   return {
     sx: {
-      bgcolor: stringToColor(name),
+      bgcolor: stringToColor(name)
     },
     children: `${name.split(' ')[0][0]}`,
   };
@@ -35,10 +35,10 @@ function stringToColor(string: string) {
 
 
 
-const StringAvatar = (props: { name: string, sx: Object })=>{
-  const { name, ...prop } = props;
+const StringAvatar = (props: { name: string })=>{
+  const { name } = props;
   return (
-        <Avatar {...stringAvatar(name)} {...prop}></Avatar>
+        <Avatar {...stringAvatar(name)}></Avatar>
   )
 }
 
