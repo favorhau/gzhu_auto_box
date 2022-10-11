@@ -304,7 +304,7 @@ const Home: NextPage = () => {
                 placeholder='Cookie'
                 variant="filled" />
                 
-                <Link sx={{marginTop: 2}} underline='none' target="_blank" href={'https://github.com/favorhau/gzhu_tomorrow_badminton/blob/main/README.md'}>如何获取Cookie?</Link>
+                <Link sx={{marginTop: 2}} underline='none' target="_blank" href={'/help'}>如何获取Cookie?</Link>
               </Box>
               <Box sx={{display: (step === 1?'':'none') }}>
               <FormControl sx={{mt:1, minWidth: 120 }} size="small">
