@@ -33,8 +33,8 @@ const checkProject = async (cookie: string, stepid: string, csrfToken: string, w
     const projects = JSON.parse(res.data.entities[0]).cDXXList ;
     
     return { 
-        chooseProject: projects.map((x: any, idx: Number)=>{
-            return  `${idx}|${x.tYXM} ${x.sJD} ${x.yYDD} ${x.yYCD} ${x.yYZT===''?'未预约':x.yYZT}`
+        chooseProject: projects.map((x: any)=>{
+            return  `${x.tYXM} ${x.sJD} ${x.yYDD} ${x.yYCD} ${x.yYZT===''?'未预约':x.yYZT}`
         }),
         rawProject: projects
     }

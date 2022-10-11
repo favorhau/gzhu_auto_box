@@ -1,8 +1,9 @@
+import { instance } from './instance'
+import qs from 'qs'
+
+const submit = async (cookie: string, week: string, date: string, stepid: string, csrfToken: string, projects: Array<any>, objectIdx: number, id: string, name: string) => {
 
 
-const generateParams = (week: string, date: string, stepid: string, csrfToken: string, projects: Array<any>, objectyyCD: string, id: string, name: string) => {
-    
-    const objectIdx = Number(objectyyCD.split("|")[0])
     const generateTime = projects.map(x=>x.sJD)
     const generateProject = projects.map(x=>x.tYXM)
     const generateyYCD = projects.map(x=>x.yYCD)
@@ -83,7 +84,7 @@ const generateParams = (week: string, date: string, stepid: string, csrfToken: s
     const params: Object = {
         "stepId":stepid, 
         "actionId":1,
-        "formData": USERFORM_DATA,
+        "formData": JSON.stringify(USERFORM_DATA),
         "timestamp":1662132392,
         "rand":229.65473861451252,
         "boundFields":"fieldXH,fieldZJ,fieldFZPD,fieldYYXM,fieldXM,fieldSF,fieldSQSJ,fieldYYCD,fieldXY,fieldYYDD,fieldYYRQ,fieldSJD,fieldLXFS,fieldXZDD,fieldXZ,fieldTYXM,fieldYYZT",
@@ -93,21 +94,25 @@ const generateParams = (week: string, date: string, stepid: string, csrfToken: s
         "nextUsers": "{}"
     }
     
-    console.log('\x1b[34m%s\x1b[0m', '---------------------------------------------------------------------------------')
     
-    for (var key in params) {
-		const value = params[key as keyof typeof params]
-		if( Object.prototype.toString.call(value) === '[object Object]' )
-		{
-			console.log(`formData:${JSON.stringify(value)}`)
-		}else
-		{
-			console.log(`${key}:${value}`)
-		}
+    const res = await instance(cookie).post('https://usc.gzhu.edu.cn/infoplus/interface/doAction',qs.stringify(params))
+    
+    return res.data
+    // console.log('\x1b[34m%s\x1b[0m', '---------------------------------------------------------------------------------')
+    
+    // for (var key in params) {
+	// 	const value = params[key as keyof typeof params]
+	// 	if( Object.prototype.toString.call(value) === '[object Object]' )
+	// 	{
+	// 		console.log(`formData:${JSON.stringify(value)}`)
+	// 	}else
+	// 	{
+	// 		console.log(`${key}:${value}`)
+	// 	}
 		
-	  }
-	  console.log('\x1b[34m%s\x1b[0m', '------------------------请复制上述参数至postMan body-----------------------------')
+	//   }
+	//   console.log('\x1b[34m%s\x1b[0m', '------------------------请复制上述参数至postMan body-----------------------------')
 	}
 
 
-export default generateParams
+export default submit
