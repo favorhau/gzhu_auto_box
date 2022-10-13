@@ -25,9 +25,9 @@ const getUrl = async (cookie: string, csrfToken: string):Promise<string> => {
 
     const res = await instance(cookie).post('/interface/start', params);
 
-    // return res.data.entities[0]
+    return res.data.entities[0]
     // TODO
-    return 'https://usc.gzhu.edu.cn/infoplus/form/2643367/render' //调试
+    // return 'https://usc.gzhu.edu.cn/infoplus/form/2643367/render' //调试
 }
 
 export { getCsrfToken, getUrl } ;
