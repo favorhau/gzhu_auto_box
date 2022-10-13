@@ -145,7 +145,7 @@ const Home: NextPage = () => {
     }else if(step === 2)
     {
     
-      const week = ['周日', '周一', '周二', '周三', '周四', '周四', '周五', '周六'][dayjs(date).get('day')]
+      const week = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][dayjs(date).get('day')]
       const postDate = dayjs(date).format('YYYY-MM-DD')
       const spaceData = { cookie, stepId, csrf, week, postDate, place}
       const space = await axios.post(api.space, spaceData)
@@ -167,7 +167,7 @@ const Home: NextPage = () => {
       
       //论没有mock interface的坏处
       // 周一
-      const week = ['周日', '周一', '周二', '周三', '周四', '周四', '周五', '周六'][dayjs(date).get('day')]
+      const week = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][dayjs(date).get('day')]
       // 2022-09-10
       const bookdate = dayjs(date).format('YYYY-MM-DD')
       
@@ -331,6 +331,7 @@ const Home: NextPage = () => {
               <Box sx={{display: (step === 2?'':'none') }}>
               <DatePicker date={date} handleDateChange={(newValue: Dayjs | null)=>{
                 {
+                  console.log(dayjs(newValue).get('day'))
                   setDate(newValue)
                 }
               }}/>
