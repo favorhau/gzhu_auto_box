@@ -1,7 +1,7 @@
 import { instance } from './instance'
 import qs from 'qs'
 
-const submit = async (cookie: string, week: string, date: string, stepid: string, csrfToken: string, projects: Array<any>, objectIdx: number, id: string, name: string) => {
+const submit = async (cookie: string, week: string, date: string, stepid: string, csrfToken: string, projects: Array<any>, objectIdx: number, id: string, name: string, lxfs: string) => {
 
 
     const generateTime = projects.map(x=>x.sJD)
@@ -64,7 +64,7 @@ const submit = async (cookie: string, week: string, date: string, stepid: string
 	"fieldXH": id,
 	"fieldXY": "0206",
 	"fieldXY_Name": "计算机科学与网络工程学院",
-	"fieldLXFS": id,
+	"fieldLXFS": lxfs,
 	"fieldYYXM": "羽毛球",
 	"fieldYYXM_Name": "羽毛球",
 	"fieldXZDD": generateyYDD[0],

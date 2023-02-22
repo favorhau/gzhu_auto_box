@@ -18,9 +18,10 @@ const handler = async(
     space,
     spaceIdx,
     id,
-    name
+    name,
+    lxfs
   } = req.body
-  const sub = await submit(cookie, week, bookdate, stepId, csrf, space, spaceIdx, id, name)
+  const sub = await submit(cookie, week, bookdate, stepId, csrf, space, spaceIdx, id, name, lxfs)
   
   res.status(200).json(sub)
 }

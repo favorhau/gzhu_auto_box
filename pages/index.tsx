@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
-import { Typography, TextField, Box, Breadcrumbs, Link } from '@mui/material';
+import { Typography, TextField, Box, Breadcrumbs, Link, Input } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useState, useEffect } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
@@ -57,6 +57,7 @@ const Home: NextPage = () => {
     name: undefined,
     id: undefined
   })
+  const [ lxfs, setLxfs ] = useState<string>('');
   
   
   const handleDiffTime = () => {
@@ -179,6 +180,7 @@ const Home: NextPage = () => {
         csrf,
         space: space.rawProject,
         spaceIdx,
+        lxfs,
         ...userInfo
       })
       if(submit.data.ecode==='SUCCEED')
@@ -373,6 +375,7 @@ const Home: NextPage = () => {
                  space={space.rawProject[spaceIdx].yYCD}
                  ></InteractiveList>
                 <Typography sx={{marginTop: 1}} align='center' variant='subtitle2' color='red'>提交成功需要约24小时才能重新预约</Typography>
+                <Input onChange={(e)=>setLxfs(e.target.value)} placeholder='请输入联系方式' > </Input>
               </Box> }
               {step === 5&& <Box sx={{
               display: (step === 5?'flex':'none')
