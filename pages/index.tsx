@@ -375,7 +375,7 @@ const Home: NextPage = () => {
                  space={space.rawProject[spaceIdx].yYCD}
                  ></InteractiveList>
                 <Typography sx={{marginTop: 1}} align='center' variant='subtitle2' color='red'>提交成功需要约24小时才能重新预约</Typography>
-                <Input onChange={(e)=>setLxfs(e.target.value)} placeholder='请输入联系方式' > </Input>
+                <Input onChange={(e)=>setLxfs(e.target.value)} placeholder='请输入联系方式'/>
               </Box> }
               {step === 5&& <Box sx={{
               display: (step === 5?'flex':'none')
