@@ -1,28 +1,17 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import  submit from "./utils/submit";
-type Data = {
-  rawText: string
-}
-
+import  getYZYMFQ from "./utils/getYZYMFQ";
+type Data = string
 const handler = async(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) => {
   const {
     cookie,
-    week,
-    bookdate,
     stepId,
-    csrf,
-    space,
-    spaceIdx,
-    id,
-    name,
-    lxfs,
-    YZYMFQ
+    csrfToken,
   } = req.body
-  const sub = await submit(cookie, week, bookdate, stepId, csrf, space, spaceIdx, id, name, lxfs, YZYMFQ)
+  const sub = await getYZYMFQ(cookie, csrfToken, stepId)
   
   res.status(200).json(sub)
 }

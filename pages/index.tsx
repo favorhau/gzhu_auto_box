@@ -24,7 +24,8 @@ const api = {
   url: '/api/url',
   userInfo: '/api/userInfo',
   space: '/api/space',
-  submit: '/api/submit'
+  submit: '/api/submit',
+  YZYMFQ: 'api/YZYMFQ'
 }
 
 const Home: NextPage = () => {
@@ -41,6 +42,7 @@ const Home: NextPage = () => {
   const [place, setPlace] = useState('')
   const [open, setOpenErrorTips] = useState(false)
   const [tips, setTips] = useState('')
+  const [YZYMFQ, setYZYMFQ ] = useState<string>('')
   const [date, setDate] = useState<Dayjs | null>(
     dayjs(),
   );
@@ -119,6 +121,13 @@ const Home: NextPage = () => {
         const stepid = (new RegExp('m/(.+)/rend').exec(_url.data.url)??[''])[1]
         setStepId(stepid)
         console.log('获取stepid成功:', stepid)
+        const _YZYMFQ = await axios.post(api.YZYMFQ, {
+          cookie: cookie,
+          csrfToken: _csrf.data.csrf,
+          stepId: stepid,
+        })
+        setYZYMFQ(_YZYMFQ as unknown as string)
+        console.log('获取YZYMFQ成功:', _YZYMFQ)
       }
       const _userInfo = await axios.post(api.userInfo, {
         cookie,
@@ -181,6 +190,7 @@ const Home: NextPage = () => {
         space: space.rawProject,
         spaceIdx,
         lxfs,
+        YZYMFQ,
         ...userInfo
       })
       if(submit.data.ecode==='SUCCEED')

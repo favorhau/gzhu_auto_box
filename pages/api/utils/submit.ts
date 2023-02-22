@@ -1,7 +1,8 @@
 import { instance } from './instance'
 import qs from 'qs'
 
-const submit = async (cookie: string, week: string, date: string, stepid: string, csrfToken: string, projects: Array<any>, objectIdx: number, id: string, name: string, lxfs: string) => {
+
+const submit = async (cookie: string, week: string, date: string, stepid: string, csrfToken: string, projects: Array<any>, objectIdx: number, id: string, name: string, lxfs: string, YZYMFQ: string) => {
 
 
     const generateTime = projects.map(x=>x.sJD)
@@ -27,12 +28,12 @@ const submit = async (cookie: string, week: string, date: string, stepid: string
 	"_VAR_OWNER_USERCODES": id,
 	"_VAR_EXECUTE_ORGANIZE": "0206",
 	"_VAR_EXECUTE_ORGANIZES_Codes": "0206",
-	"_VAR_NOW_DAY": "3",
+	"_VAR_NOW_DAY": "22",
 	"_VAR_ACTION_INDEP_ORGANIZE": "02",
 	"_VAR_OWNER_REALNAME": name,
 	"_VAR_ENTRY_TAGS": "13-场地服务,体育学院",
 	"_VAR_ACTION_INDEP_ORGANIZE_Name": "学院",
-	"_VAR_NOW": "1662179081",
+	"_VAR_NOW": "1677056980",
 	"_VAR_ACTION_ORGANIZE_Name": "计算机科学与网络工程学院",
 	"_VAR_EXECUTE_ORGANIZES_Names": "计算机科学与网络工程学院",
 	"_VAR_OWNER_ORGANIZES_Codes": "0206",
@@ -55,9 +56,11 @@ const submit = async (cookie: string, week: string, date: string, stepid: string
 	"_VAR_ACTION_ORGANIZES_Codes": "0206",
 	"_VAR_URL_Name": "https://usc.gzhu.edu.cn/infoplus/form/TYCDYY/start",
 	"_VAR_EXECUTE_INDEP_ORGANIZE": "02",
-	"_VAR_NOW_YEAR": "2022",
+	"_VAR_NOW_YEAR": "2023",
 	"groupCDXXList": projects.map(_=>-1),
 	"fieldSF": "本科生",
+	"fieldYZYMFQ":YZYMFQ,
+	"fieldLSH":stepid,
 	"fieldSQSJ": 1662179081,
 	"fieldXM": id,
 	"fieldXM_Name": name,
@@ -85,9 +88,9 @@ const submit = async (cookie: string, week: string, date: string, stepid: string
         "stepId":stepid, 
         "actionId":1,
         "formData": JSON.stringify(USERFORM_DATA),
-        "timestamp":1662132392,
+        "timestamp":1662179081,
         "rand":229.65473861451252,
-        "boundFields":"fieldXH,fieldZJ,fieldFZPD,fieldYYXM,fieldXM,fieldSF,fieldSQSJ,fieldYYCD,fieldXY,fieldYYDD,fieldYYRQ,fieldSJD,fieldLXFS,fieldXZDD,fieldXZ,fieldTYXM,fieldYYZT",
+        "boundFields":"fieldXH,fieldZJ,fieldFZPD,fieldYYXM,fieldXM,fieldLSH,fieldSF,fieldSQSJ,fieldYYCD,fieldXY,fieldYYDD,fieldYYRQ,fieldYZYMFQ,fieldSJD,fieldLXFS,fieldXZDD,fieldXZ,fieldTYXM,fieldYYZT",
         "csrfToken":csrfToken,
         "lang":"en",
         "remark": "",
