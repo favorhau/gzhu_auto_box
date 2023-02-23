@@ -160,14 +160,6 @@ const Home: NextPage = () => {
     }else if(step === 3)
     {
       
-      console.log('正在获取加密信息YZYMFQ')
-      const _YZYMFQ = await axios.post(api.YZYMFQ, {
-        cookie: cookie,
-        csrfToken: csrf,
-        stepId: stepId,
-      })
-      setYZYMFQ(_YZYMFQ.data as unknown as string)
-      console.log('获取YZYMFQ成功:', _YZYMFQ.data)
       setLoading(false)
       setFinish(4)
       setStep(4)
@@ -175,6 +167,23 @@ const Home: NextPage = () => {
     {
     
       handleDiffTime()
+      try
+      {console.log('正在获取加密信息YZYMFQ')
+      const _YZYMFQ = await axios.post(api.YZYMFQ, {
+        cookie: cookie,
+        csrfToken: csrf,
+        stepId: stepId,
+      })
+        setYZYMFQ(_YZYMFQ.data as unknown as string)
+        console.log('获取YZYMFQ成功:', _YZYMFQ.data)
+      }catch(e)
+      {
+        setTips(`获取加密信息失败,请重试 ${e}`)
+        setOpenErrorTips(true)
+        setLoading(false)
+        return
+      }
+      
       setLoading(false)
       
       //论没有mock interface的坏处
