@@ -121,13 +121,6 @@ const Home: NextPage = () => {
         const stepid = (new RegExp('m/(.+)/rend').exec(_url.data.url)??[''])[1]
         setStepId(stepid)
         console.log('获取stepid成功:', stepid)
-        const _YZYMFQ = await axios.post(api.YZYMFQ, {
-          cookie: cookie,
-          csrfToken: _csrf.data.csrf,
-          stepId: stepid,
-        })
-        setYZYMFQ(_YZYMFQ as unknown as string)
-        console.log('获取YZYMFQ成功:', _YZYMFQ)
       }
       const _userInfo = await axios.post(api.userInfo, {
         cookie,
@@ -166,6 +159,15 @@ const Home: NextPage = () => {
       setStep(3)
     }else if(step === 3)
     {
+      
+      console.log('正在获取加密信息YZYMFQ')
+      const _YZYMFQ = await axios.post(api.YZYMFQ, {
+        cookie: cookie,
+        csrfToken: csrf,
+        stepId: stepId,
+      })
+      setYZYMFQ(_YZYMFQ.data as unknown as string)
+      console.log('获取YZYMFQ成功:', _YZYMFQ.data)
       setLoading(false)
       setFinish(4)
       setStep(4)
@@ -385,7 +387,7 @@ const Home: NextPage = () => {
                  space={space.rawProject[spaceIdx].yYCD}
                  ></InteractiveList>
                 <Typography sx={{marginTop: 1}} align='center' variant='subtitle2' color='red'>提交成功需要约24小时才能重新预约</Typography>
-                <Input onChange={(e)=>setLxfs(e.target.value)} placeholder='请输入联系方式'/>
+                <Input sx={{minWidth: 120}} onChange={(e)=>setLxfs(e.target.value)} placeholder='请输入联系方式'/>
               </Box> }
               {step === 5&& <Box sx={{
               display: (step === 5?'flex':'none')

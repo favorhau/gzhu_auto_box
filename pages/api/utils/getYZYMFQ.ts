@@ -14,7 +14,8 @@ const getYZYMFQ = async (cookie: string, csrfToken: string, stepId: string):Prom
     params.append('csrfToken', csrfToken);
 
     const res = await instance(cookie).post('/interface/render', params);
-    return `${(Math.cos(parseInt(res.data['entities']['data']['fieldLSH']))+10000)*1000}`
+    const LSH = res.data['entities'][0]['data']['fieldLSH']
+    return `${(Math.cos(parseInt(LSH))+10000)*1000}`
 }
 
 export default getYZYMFQ;
