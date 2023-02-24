@@ -166,26 +166,17 @@ const Home: NextPage = () => {
     }else if(step === 4)
     {
     
+      setLoading(false)
       handleDiffTime()
       try
       {console.log('正在获取加密信息YZYMFQ')
-      const _YZYMFQ = await axios.post(api.YZYMFQ, {
-        cookie: cookie,
-        csrfToken: csrf,
-        stepId: stepId,
-      })
+        const _YZYMFQ = await axios.post(api.YZYMFQ, {
+          cookie: cookie,
+          csrfToken: csrf,
+          stepId: stepId,
+        })
         setYZYMFQ(_YZYMFQ.data as unknown as string)
         console.log('获取YZYMFQ成功:', _YZYMFQ.data)
-      }catch(e)
-      {
-        setTips(`获取加密信息失败,请重试 ${e}`)
-        setOpenErrorTips(true)
-        setLoading(false)
-        return
-      }
-      
-      setLoading(false)
-      
       //论没有mock interface的坏处
       // 周一
       const week = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][dayjs(date).get('day')]
@@ -201,7 +192,7 @@ const Home: NextPage = () => {
         space: space.rawProject,
         spaceIdx,
         lxfs,
-        YZYMFQ,
+        YZYMFQ: _YZYMFQ.data,
         ...userInfo
       })
       if(submit.data.ecode==='SUCCEED')
@@ -215,6 +206,14 @@ const Home: NextPage = () => {
         setOpenErrorTips(true)
         setLoading(false)
       }
+        }catch(e)
+        {
+          setTips(`获取加密信息失败,请重试 ${e}`)
+          setOpenErrorTips(true)
+          setLoading(false)
+          return
+        }
+    
     }
     setLoading(false)
   }
