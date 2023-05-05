@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
-import { Typography, TextField, Box, Breadcrumbs, Link, Input } from '@mui/material';
+import { Typography, TextField, Box, Breadcrumbs, Link, Input, Button, Stack } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useState, useEffect } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
@@ -25,7 +25,8 @@ const api = {
   userInfo: '/api/userInfo',
   space: '/api/space',
   submit: '/api/submit',
-  YZYMFQ: 'api/YZYMFQ'
+  YZYMFQ: '/api/YZYMFQ',
+  IO: '/api/io',
 }
 
 const Home: NextPage = () => {
@@ -86,6 +87,27 @@ const Home: NextPage = () => {
   }, [date, su]);
   
   //处理请求
+  const addTrigger = async () => {
+    const week = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][dayjs(date).get('day')];
+    // 2022-09-10
+    const bookdate = dayjs(date).format('YYYY-MM-DD');
+    await axios.post(api.IO, {
+      method: 'add',
+      payload: {
+        cookie,
+        week,
+        bookdate,
+        stepId,
+        csrf,
+        space: space.rawProject,
+        spaceIdx,
+        lxfs,
+        ...userInfo
+      }
+    })
+    
+  }
+  
   const handleClick = async () => {
     setLoading(true)
     
@@ -424,6 +446,19 @@ const Home: NextPage = () => {
                 const s = diffTime%60
                 return `${h}时${m}分${s}秒后开启`
               })()): '下一步' }  </LoadingButton>
+              <Stack spacing={2}>
+                <LoadingButton 
+                size="large"
+                onClick={addTrigger}
+                variant="outlined"
+                sx={{
+                  marginTop: 3,
+                  width: 300,
+                  display: step !== 4? 'none':''
+                }}
+                disabled={step === 4 && diffTime>0}
+                > 添加进触发器 </LoadingButton>
+              </Stack>
               <CustomizedSnackbars tips={tips} open={open}  setOpen={setOpenErrorTips}/>
           </Box>
           
